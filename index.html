@@ -1,26 +1,53 @@
 <html>
   <head>
-    <style>
-    </style>
-    <script>
+    <title>Cookies</title>
+	<style>
       .wrapper{
+		font-size:15px;
+		font-family:Arial;
         text-align:center;
       }
       ul{
         list-style-type:none;
+		display:inline-block;
       }
-      li{
+      li:not(:last-child){
         text-align:right;
+		margin-bottom:0.2em;
       }
+	  input[type=button]{
+		cursor:pointer;
+	  }
+	</style>
+    <script>
+		function saveCookie(){
+			document.cookie = "CookiesPractice=name:"+ getInputVal("name") 
+			+"&email:"+ getInputVal("email") 
+			+"&age:"+ getInputVal("age") 
+			+";expires="+ endOfThisDayUTCString() +";path=/";			
+			location.href = "loadCookie.html";
+		}
+		function getInputVal(id){
+			return document.querySelector("#" + id).value;
+		}
+		function endOfThisDayUTCString(){
+		    var d = new Date();
+			return new Date(
+			d.getFullYear(),
+			d.getMonth(),
+			d.getDate(),
+			26,59,59).toUTCString();		
+		}
     </script>
   </head>
   <body>
     <div class="wrapper">
       <div>
         <ul>
-          <li><label for="name">Name</label><input id="name" type="text"/></li>
-          <li><label for="email">Email</label><input id="email" type="text"/></li>
-          <li><label for="age">Age</label><input id="age" type="text"/></li>
+          <li><label for="name">Name </label><input id="name" type="text"/></li>
+          <li><label for="email">Email </label><input id="email" type="text"/></li>
+          <li><label for="age">Age </label><input id="age" type="text"/></li>
+		  <li><input type="button" value="Save & Continue" onclick="saveCookie();"/></li>
         </ul>
       </div>
     </div>
