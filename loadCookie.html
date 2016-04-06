@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Cookies</title>
+	<style>
+      .wrapper{
+		font-size:15px;
+		font-family:Arial;
+        text-align:center;
+      }
+      ul{
+        list-style-type:none;
+		display:inline-block;
+      }
+      li{
+        text-align:right;
+		margin-bottom:0.2em;
+      }
+	</style>
+    <script>
+		window.onload = function(){
+			var c = getCookieByName("CookiesPractice");
+			c = c.split("&");
+			for (var i = 0; i < c.length; i++){
+				var val = c[i].split(":");
+				setInputVal(val[0],val[1]);
+			}
+		};
+		function getCookieByName(name){
+			var c = document.cookie.split("=");
+			for (var i=0; i < c.length; i++){
+				if (i % 2 != 0)
+					continue;
+				if (c[i] == name)
+					return c[i + 1];
+			}
+		}
+		function setInputVal(id,val){
+			document.querySelector("#" + id).value = val;
+		}
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div>
+        <ul>
+          <li><label for="name">Name </label><input id="name" type="text" disabled="true"/></li>
+          <li><label for="email">Email </label><input id="email" type="text" disabled="true"/></li>
+          <li><label for="age">Age </label><input id="age" type="text" disabled="true"/></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
